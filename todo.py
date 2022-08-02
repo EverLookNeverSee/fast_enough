@@ -37,6 +37,14 @@ async def update_todo(todo_data: TodoItem, todo_id: int = Path(..., title="The I
     for todo in todo_list:
         if todo.id == todo_id:
             todo.item = todo_data.item
-
             return {"message": "Todo updated successfully"}
+    return {"message": "Todo not found"}
+
+
+@todo_router.delete("/todo/{todo_id}")
+async def delete_single_todo(todo_id: int = Path(..., title="Todo ID", gt=0)) -> dict:
+    for todo in todo_list:
+        if todo.id == todo_id:
+            todo_list.remove(todo)
+            return {"message": "Todo deleted successfully"}
     return {"message": "Todo not found"}
