@@ -21,3 +21,14 @@ class Todo(BaseModel):
                 "item": {"item": "Buy milk", "status": "pending"},
             }
         }
+
+
+class TodoItem(BaseModel):
+    item: str
+
+    class Config:
+        Schema_extra = {
+            "Example": {
+                "item": "Read the next chapter of the book",
+            }
+        }
