@@ -24,11 +24,12 @@ class Todo(BaseModel):
 
 
 class TodoItem(BaseModel):
-    item: str
+    item: Item
 
     class Config:
         Schema_extra = {
             "Example": {
                 "item": "Read the next chapter of the book",
+                "status": "pending",
             }
         }
