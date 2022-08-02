@@ -48,3 +48,9 @@ async def delete_single_todo(todo_id: int = Path(..., title="Todo ID", gt=0)) ->
             todo_list.remove(todo)
             return {"message": "Todo deleted successfully"}
     return {"message": "Todo not found"}
+
+
+@todo_router.delete("/todo")
+async def delete_all_todos() -> dict:
+    todo_list.clear()
+    return {"message": "All todos deleted successfully"}
