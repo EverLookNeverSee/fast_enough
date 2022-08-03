@@ -1,9 +1,9 @@
 """
     Models for the application.
 """
-
+from fastapi import Form
 from pydantic import BaseModel
-from typing import List
+from typing import List, Optional
 
 
 class Item(BaseModel):
@@ -14,6 +14,12 @@ class Item(BaseModel):
 class Todo(BaseModel):
     id: int
     item: Item
+
+    @classmethod
+    def as_form(
+            cls, item: str = Form(...)
+    ):
+        return cls(item=item)
 
     class Config:
         Schema_extra = {
